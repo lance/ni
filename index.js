@@ -17,7 +17,12 @@ if (process.argv.length === 3) {
       if (o.length) {
         let arr = Object.keys(o).map(k => o[k]);
         arr.forEach(a => {
-          console.log(`#${a.number} - ${a.title}`);
+          for (let i = 0; i < a.labels.length; i++) {
+            if (a.labels[i].name === 'good first contribution') {
+              console.log(`#${a.number} - ${a.title}`);
+              break;
+            }
+          }
         });
       }
     });
@@ -25,4 +30,8 @@ if (process.argv.length === 3) {
 } else {
   console.log('Usage: node index 2 - This will query for page 1 and 2 of the issues.');
   console.log('To get all issues look the github last page and type: node index 27');
+  console.log('WARNING:');
+  console.log('The number of pages on web UI is diff from API');
+  console.log('To get more issues by the fixed label use number of the last page');
+  console.log('bigger than current last page on web UI');
 }
